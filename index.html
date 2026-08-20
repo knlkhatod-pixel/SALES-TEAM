@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +16,10 @@
       color: white;
       padding: 15px 30px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
     }
     .company-name {
       font-size: 28px;
@@ -30,10 +31,19 @@
       text-align: right;
       font-size: 14px;
     }
-    .directors a {
-      display: block;
+    .director-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .director-row:last-child {
+      margin-bottom: 0;
+    }
+    .director-row .director-name {
       color: #fff;
-      text-decoration: none;
+      white-space: nowrap;
     }
     .container {
       max-width: 1200px;
@@ -52,6 +62,7 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-sizing: border-box;
     }
     table {
       width: 100%;
@@ -66,12 +77,46 @@
     th {
       background-color: #f0f0f0;
     }
-    td a {
-      color: #007bff;
-      text-decoration: none;
+
+    /* Phone / contact buttons */
+    .phone-cell {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
     }
-    td a:hover {
-      text-decoration: underline;
+    .phone-entry {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .phone-num {
+      white-space: nowrap;
+    }
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .icon-btn.call {
+      background-color: #0066cc;
+    }
+    .icon-btn.call:hover {
+      background-color: #004c99;
+    }
+    .icon-btn.wa {
+      background-color: #25D366;
+    }
+    .icon-btn.wa:hover {
+      background-color: #1da851;
     }
   </style>
 </head>
@@ -80,8 +125,16 @@
 <header>
   <div class="company-name">CHENNAI RR MEDICOS PVT LTD</div>
   <div class="directors">
-    <a href="tel:9381005217">Rajmal B - 9381005217</a>
-    <a href="tel:9600075212">Kunal R - 9600075212</a>
+    <div class="director-row">
+      <span class="director-name">Rajmal B - 9381005217</span>
+      <a class="icon-btn call" href="tel:+919381005217" title="Call Rajmal B">📞</a>
+      <a class="icon-btn wa" href="https://wa.me/919381005217" target="_blank" rel="noopener" title="WhatsApp Rajmal B">💬</a>
+    </div>
+    <div class="director-row">
+      <span class="director-name">Kunal R - 9600075212</span>
+      <a class="icon-btn call" href="tel:+919600075212" title="Call Kunal R">📞</a>
+      <a class="icon-btn wa" href="https://wa.me/919600075212" target="_blank" rel="noopener" title="WhatsApp Kunal R">💬</a>
+    </div>
   </div>
 </header>
 
@@ -98,14 +151,74 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td>AMBATTUR, ANNA NAGAR, AVADI, AYANAVARAM, AYYAPAKKAM, CHOOLAI, GTPT, GUMDIPUNDI, KILPAUK, KOLATHUR, KORATTUR, MANNUPET, MINJUR, MOGAPPAIR EAST, MOGAPPAIR WEST, OTTERI, PERAMBUR, PONNERI, PUDUR, PH ROAD, REDHILLS, ROYAPURAM,THIRUMULLAIYOVAL, TONDIARPET, TRIPLICANE, VILLIVAKKAM, VYSARPADI</td><td>DIRECT COMPANY BILLING</td><td><a href="tel:9551289890">9551289890</a>, <a href="tel:9600070189">9600070189</a>, <a href="tel:9841564796">9841564796</a>, <a href="tel:04442804570">044-42804570</a>, <a href="tel:04442862220">044-42862220</a>, <a href="tel:04442836141">044-42836141</a></td></tr>
-      <tr><td>TONDIARPET</td><td>ANAND</td><td><a href="tel:9094274003">9094274003</a></td></tr>
-      <tr><td>MADHAVARAM</td><td>DEVRAJ</td><td><a href="tel:9551688101">9551688101</a></td></tr>
-      <tr><td>MANALI, THIRUVOTTIYUR</td><td>SUDHAKAR</td><td><a href="tel:8072632573">8072632573</a></td></tr>
-      <tr><td>PERAMBUR</td><td>SATYAKUMAR</td><td><a href="tel:9941004765">9941004765</a></td></tr>
-      <tr><td>THIRUMULLAYOIAL</td><td>ANAND S</td><td><a href="tel:9941872978">9941872978</a></td></tr>
-      <tr><td>AVADI, MAPPEDU</td><td>PADMANABAN</td><td><a href="tel:9962939891">9962939891</a></td></tr>
-      <tr><td>THIRUVALLUR</td><td>SRIDHAR</td><td><a href="tel:9944857794">9944857794</a></td></tr>
+      <tr>
+        <td>AMBATTUR, ANNA NAGAR, AVADI, AYANAVARAM, AYYAPAKKAM, CHOOLAI, GTPT, GUMDIPUNDI, KILPAUK, KOLATHUR, KORATTUR, MANNUPET, MINJUR, MOGAPPAIR EAST, MOGAPPAIR WEST, OTTERI, PERAMBUR, PONNERI, PUDUR, PH ROAD, REDHILLS, ROYAPURAM,THIRUMULLAIYOVAL, TONDIARPET, TRIPLICANE, VILLIVAKKAM, VYSARPADI</td>
+        <td>DIRECT COMPANY BILLING</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9551289890</span><a class="icon-btn call" href="tel:+919551289890" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919551289890" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+          <span class="phone-entry"><span class="phone-num">9600070189</span><a class="icon-btn call" href="tel:+919600070189" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919600070189" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+          <span class="phone-entry"><span class="phone-num">9841564796</span><a class="icon-btn call" href="tel:+919841564796" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919841564796" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+          <span class="phone-entry"><span class="phone-num">044-42804570</span><a class="icon-btn call" href="tel:+914442804570" title="Call">📞</a></span>
+          <span class="phone-entry"><span class="phone-num">044-42862220</span><a class="icon-btn call" href="tel:+914442862220" title="Call">📞</a></span>
+          <span class="phone-entry"><span class="phone-num">044-42836141</span><a class="icon-btn call" href="tel:+914442836141" title="Call">📞</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>TONDIARPET</td>
+        <td>ANAND</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9094274003</span><a class="icon-btn call" href="tel:+919094274003" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919094274003" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>MADHAVARAM</td>
+        <td>DEVRAJ</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9551688101</span><a class="icon-btn call" href="tel:+919551688101" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919551688101" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>MANALI, THIRUVOTTIYUR</td>
+        <td>SUDHAKAR</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">8072632573</span><a class="icon-btn call" href="tel:+918072632573" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/918072632573" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>PERAMBUR</td>
+        <td>SATYAKUMAR</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9941004765</span><a class="icon-btn call" href="tel:+919941004765" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919941004765" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>THIRUMULLAYOIAL</td>
+        <td>ANAND S</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9941872978</span><a class="icon-btn call" href="tel:+919941872978" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919941872978" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>AVADI, MAPPEDU</td>
+        <td>PADMANABAN</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9962939891</span><a class="icon-btn call" href="tel:+919962939891" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919962939891" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>THIRUVALLUR</td>
+        <td>SRIDHAR</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9944857794</span><a class="icon-btn call" href="tel:+919944857794" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919944857794" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>KILPAUK,PURASAIWALKAM</td>
+        <td>ARUMUGAM</td>
+        <td class="phone-cell">
+          <span class="phone-entry"><span class="phone-num">9600061410</span><a class="icon-btn call" href="tel:+919600061410" title="Call">📞</a><a class="icon-btn wa" href="https://wa.me/919600061410" target="_blank" rel="noopener" title="WhatsApp">💬</a></span>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
